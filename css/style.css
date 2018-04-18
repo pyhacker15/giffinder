@@ -5,6 +5,36 @@ body {
 }
 
 footer {
-    padding-top: 100px;
-    margin: 50px 0;
+  font-size: 12px;
+  padding: 30px 0;
+  margin-top: 100px;
+  background-color: black;
 }
+
+footer .col-sm-8 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer li img {
+  width: 32px;
+  height: 32px;
+}
+
+ footer .col-sm-4 {
+   color: #FFF; 
+}
+
+footer .row {
+  display: flex;
+  align-items: center;
+}
+
+.greeting { 
+     margin-bottom: 390px;
+} 
+
