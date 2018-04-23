@@ -4,20 +4,114 @@
 
 /* global $ */
 
-$(document).ready(function(){
+$( document ).ready( function() {
     
-$("#submit").click(function(){
-    var userInput = $('#srch-term').val();
-    var url = "https://api.giphy.com/v1/gifs/search?q=" + userInput + "&api_key=dc6zaTOxFJmzC";
-    $.ajax({
-        url: url,
-        method: "GET",
-        success: function(response) {
-             for( var i = 0; i < response.data.length; i++) { 
-                 $('body').append('<img src=' + response.data[i].images.fixed_width.url + '>');
-             } 
-        },
-    }); 
-});
+	$( "#srch-term" ).keyup( function( event ) {
+		if ( event.keyCode === 13 ) {
+			$( "#submit" ).click();
+		}
+	} );
 
-});
+	$( "#submit" ).click( function() {
+		$( ".gallery" ).empty();
+		var userInput = $( '#srch-term' ).val();
+		var path = "/v1/gifs/search";
+		var url = "https://api.giphy.com" + path + "?q=" + userInput.toLowerCase() + "&api_key=dc6zaTOxFJmzC";
+		$.ajax( {
+			url: url,
+			method: "GET",
+			success: function( response ) {
+				$( ".giphyTitle" ).html( "<h1 id='giphyTitle'>" + userInput.toLowerCase() + "</h1>" );
+				for ( var i = 0; i < response.data.length; i++ ) {
+					$( '.gallery' ).append(
+						'<img data-toggle="modal" data-target="#modal-' + i + '" class="col-md-3 giphy" src=' + response.data[ i ].images.fixed_width.url + '>\
+                  <div class="modal" id="modal-' + i + '" tabindex="-1" aria-labelledby="myModalLabel">\
+                     <div class="modal-dialog">\
+                         <div class="modal-content">\
+                             <div class="modal-header">\
+                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\
+                                 <h4 class="modal-title" id="myModalLabel">' + response.data[ i ].title + '</h4>\
+                             </div>\
+                             <div class="modal-body">\
+                                 <img class="modalImage" src="' + response.data[ i ].images.fixed_width.url + '">\
+                                 <div class="gif_description">\
+                                     <p>Uploaded: ' + response.data[ i ].import_datetime + '</p>\
+                                      <p>Rating: ' + response.data[ i ].rating.toUpperCase() + '</p>\
+                                     <p>GIF Link: ' + response.data[ i ].images.fixed_width.url + '</p>\
+                                 </div>\
+                                 <div id="share-buttons">\
+                                     <p>Share:</p>\
+                                     <a href="mailto:?Subject=Cool Gify&amp;Body=I%20found%20this%20gif%20on%20giffinder%20  ' + response.data[ i ].images.fixed_width.url + '">\
+                                         <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />\
+                                     </a>\
+                                     <a href="http://www.facebook.com/sharer.php?u=' + response.data[ i ].images.fixed_width.url + '" target="_blank">\
+                                         <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />\
+                                     </a>\
+                                     <a href="https://plus.google.com/share?url=' + response.data[ i ].images.fixed_width.url + '" target="_blank">\
+                                         <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />\
+                                     </a>\
+                                     <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=' + response.data[ i ].images.fixed_width.url + '" target="_blank">\
+                                         <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />\
+                                     </a>\
+                                     <a href="http://reddit.com/submit?url=' + response.data[ i ].images.fixed_width.url + ' &amp;title=Simple Share Buttons" target="_blank">\
+                                         <img src="https://simplesharebuttons.com/images/somacro/reddit.png" alt="Reddit" />\
+                                     </a>\
+                                     <a href="https://twitter.com/share?url=' + response.data[ i ].images.fixed_width.url + '" target="_blank">\
+                                         <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />\
+                                     </a>\
+                                 </div>\
+                             </div>\
+                         </div>\
+                     </div>\
+                  </div>'
+					);
+					console.log( response.data[ i ].title );
+				}
+				$( "footer" ).css( "margin-top", 100 );
+			},
+		} );
+	} );
+
+	$( "#randomizer" ).click( function() {
+		$( ".gallery" ).empty();
+		var path = "/v1/gifs/random";
+		var url = "https://api.giphy.com" + path + "?q=&api_key=dc6zaTOxFJmzC";
+		$.ajax( {
+			url: url,
+			method: "GET",
+			success: function( response ) {
+				var gifUrl = response.data.images.fixed_width.url;
+				$( '.gallery' ).html(
+					'<img class="col-md-3 random_image" src=' + gifUrl + '>\
+                     <div class="gif_description">\
+                         <p>Uploaded: ' + gifUrl + '</p>\
+                         <p>Dimensions: ' + response.data.images.source.width + " x " + response.data.images.source.height + '</p>\
+                         <p>GIF Link: ' + gifUrl + '</p>\
+                         <div id="share-buttons">\
+                             <a href="mailto:?Subject=Cool Gify&amp;Body=I%20found%20this%20gif%20on%20giffinder%20  ' + gifUrl + '">\
+                                 <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" />\
+                             </a>\
+                             <a href="http://www.facebook.com/sharer.php?u=' + gifUrl + '" target="_blank">\
+                                 <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />\
+                             </a>\
+                             <a href="https://plus.google.com/share?url=' + gifUrl + '" target="_blank">\
+                                 <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />\
+                             </a>\
+                             <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=' + gifUrl + '" target="_blank">\
+                                 <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />\
+                             </a>\
+                             <a href="http://reddit.com/submit?url=' + gifUrl + ' &amp;title=Simple Share Buttons" target="_blank">\
+                                 <img src="https://simplesharebuttons.com/images/somacro/reddit.png" alt="Reddit" />\
+                             </a>\
+                             <a href="https://twitter.com/share?url=' + gifUrl + '" target="_blank">\
+                                 <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />\
+                             </a>\
+                         </div>\
+                     </div>'
+				);
+				$( ".giphyTitle" ).html( "<h1 id='giphyTitle'>" + response.data.title + "</h1>" );
+				$( "footer" ).css( "margin-top", 230 );
+			},
+		} );
+	} );
+} );

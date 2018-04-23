@@ -1,67 +1,69 @@
 <!DOCTYPE html>
+
 <html>
+<head>
+   <title>Giffinder</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script async src="js/script.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+   <!-- Latest compiled and minified CSS -->
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+   <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
 
-  <head>
-      <title>
-        Giffinder
-      </title>
-      
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <script src="js/script.js" async></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <link type="text/css" rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
+<body>
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">Giffinder</a>
+			</div>
+        
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<div class="col-sm-4 col-md-4 pull-right">
+					<div class="navbar-form" role="search">
+						<div class="input-group">
+							<input class="form-control" id="srch-term" name="srch-term" placeholder="Search" type="text">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="submit" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+							</div>
+						</div>
+						<button class="btn btn-default" id="randomizer" type="sumbit">Randomize</button>
+					</div>
+				</div>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+  <!-- Page Content -->
 
-      <!-- Navigation -->
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-          <div class="container">
-              <div class="navbar-header">
-                  <a class="navbar-brand" href="#">Giffinder</a>
-              </div>
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <div class="col-sm-3 col-md-3 pull-right">
-                      <div class="navbar-form" role="search">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-                          <div class="input-group-btn">
-                              <button class="btn btn-default" type="submit" id="submit"><span class="glyphicon glyphicon-search"></span></button>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
-              <!-- /.navbar-collapse -->
-          </div>
-          <!-- /.container -->
-      </nav>
+	<section>
+		<div class="container">
+			<div class="row giphyTitle">
+				<h3 class="userInstructions text-center">Search for a Gif above<br>
+				Your results will display here</h3>
+			</div>
+			<div class="row gallery">
+			</div>
+		</div>
+ </section>
 
-      <!-- Page Content -->
-      <section>
-        <div class="container"> 
-            <div class="row gallery">
-                  <h3 class="text-center"> Search for a Gif above <br> Your results will display here</h3>
-            </div>
-        </div> 
-      <section>
-      <!-- Footer -->
-       <footer id="contact" class="container-fluid">
-    <div class="row">
-      <p class="col-sm-4">&copy; 2018 Louis Gabrie</p>
-      <ul class="col-sm-8">
-        <li class="col-sm-1">
-        <a href="https://twitter.com/louisgabrie" target="_blank">
-          <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/twitter.svg"> </a>
-        </li>
-        <li class="col-sm-1">
-        <a href="https://instagram.com/a_visual_bliss" target="_blank"> 
-          <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/instagram.svg"> </a>
-       </li>
-       </ul>
-     </div>
-   </footer>  
-  </body>
-
+   <section>
+			<!-- Footer -->
+			<footer class="container-fluid" id="contact">
+				<div class="row">
+					<p class="col-sm-4">&copy; 2018 Louis Gabrie</p>
+					<ul class="col-sm-8">
+						<li class="col-sm-1">
+							<a href="https://twitter.com/louisgabrie" target="_blank"><img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/twitter.svg"></a>
+						</li>
+						<li class="col-sm-1">
+							<a href="https://instagram.com/a_visual_bliss" target="_blank"><img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/instagram.svg"></a>
+						</li>
+					</ul>
+				</div>
+			</footer>
+		</section>
+</body>
 </html>
